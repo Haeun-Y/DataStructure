@@ -7,7 +7,7 @@ void swap_e(int * a, int * b)
   int tmp = *a;
   *a = *b;
   *b = tmp;
-}
+} 
 int delete_heap()
 {
   int min_element = heap[1];
