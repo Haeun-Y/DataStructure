@@ -15,13 +15,7 @@ void init_tree(TreeNode * root)
 TreeNode* find_node(TreeNode* cur, char ch)
 {
     if(cur->ch == ch) return cur;
-    else if(cur == NULL) 
-    {
-        TreeNode * new_node = (TreeNode*)malloc(sizeof(TreeNode));
-        new_node->ch = ',';
-        return new_node;
-    }
-    
+    else if(cur == NULL) return NULL;
     else
     {
         cout << "cur->ch : " << cur->ch << "\n";
@@ -34,9 +28,7 @@ TreeNode* find_node(TreeNode* cur, char ch)
         
     }
     
-    TreeNode * r_node = (TreeNode*)malloc(sizeof(TreeNode));
-    r_node->ch = ',';
-    return r_node;
+    return NULL;
 
 }
 void insert_node(TreeNode* root, char cur, char left, char right)
