@@ -1,42 +1,40 @@
 #include <iostream>
 using namespace std;
-
-int main(void)
+void counting_sort(int* list, int n, int* result, int range_of_num)
 {
-    int id[1005] = {1, 2, 3, 4, 5, 6, 7, 8};
-    int arr[1005] = {0,};
-    int result[1005] = {0,};
-    int result_id[1005] = {0,};
-    int cdf[10] = {0,};
+    int cdf[1005] = {0,};
     
-    int num_of_element = 8;
+    for(int i = 0; i<n; i++)
+        cdf[list[i]]++;
     
-    int max_num = 0;
-    
-    for(int i = 0; i<num_of_element; i++)
-    {
-        cin >> arr[i];
-        cdf[arr[i]]++;
-        if(max_num < arr[i])
-            max_num = arr[i];
-    }
-    
-    for(int i = 1; i<= max_num; i++)
+    //calculate cdf from pdf 
+    for(int i = 1; i <= range_of_num; i++)
         cdf[i] += cdf[i-1];
     
-   /* for(int i= 0; i<= max_num; i++)
-        cout << cdf[i] << " ";
-    cout << "\n";*/
+    for(int i = n-1; i>= 0; i--)
+        result[--cdf[list[i]]] = list[i];
     
-    for(int i = num_of_element-1; i>=0; i--)
-    {
-        result[--cdf[arr[i]]] = arr[i];
-        result_id[cdf[arr[i]]] = id[i];
-    }
-    //
+}
+void print_arr(int * list, int n)
+{
+    for(int i = 0; i<n; i++)
+        cout << list[i] << " ";
+    cout << "\n";
+}
+int main(void)
+{
+    int arr[1005] = {2, 5, 3, 0, 2, 3, 0, 3};
+    int max_num = 5;
+    int result[1005] = {0,};
+    int n = 8;
     
-    for(int i = 0; i<num_of_element; i++)
-        cout << result_id[i] << " : " << result[i] << "\n";
+    cout << "input data\n";
+    print_arr(arr, n);
+    
+    counting_sort(arr, n, result, max_num);
+    
+    cout << "sorted data\n";
+    print_arr(result, n);
     
     
 }
